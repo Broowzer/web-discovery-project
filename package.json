@@ -1,0 +1,218 @@
+{
+  "name": "web-discovery-project",
+  "version": "1.1.60",
+  "description": "Standalone Web Discovery Project package and extension",
+  "scripts": {
+    "lint": "node fern.js lint",
+    "build": "node fern.js build configs/sandbox.js --environment prod",
+    "build-module": "node fern.js build configs/module.js --environment prod",
+    "start-broowzer-env": "web-ext run --source-dir='./build' --target chromium --chromium-binary \"$BROOWZER_PATH\"",
+    "start:broowzer": "web-ext run --source-dir='./build' --target chromium --chromium-binary ./broowzer/broowzer",
+    "start:build": "node --unhandled-rejections=strict fern.js serve configs/sandbox.js --no-launch",
+    "start": "npm run build && concurrently npm:start:*",
+    "release": "auto shipit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/broowzer/web-discovery-project.git"
+  },
+  "author": "Broowzer",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/broowzer/web-discovery-project/issues"
+  },
+  "main": "./build/index.js",
+  "files": [
+    "build",
+    "package.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "browserslist": [
+    "defaults",
+    "Firefox >=68",
+    "FirefoxAndroid >=68",
+    "Chrome >= 69",
+    "Opera >= 56",
+    "Edge >= 79",
+    "not IE 11",
+    "not OperaMini all",
+    "not Baidu >= 0",
+    "not iOS >= 0",
+    "not Safari >= 0"
+  ],
+  "homepage": "https://github.com/broowzer/web-discovery-project#readme",
+  "devDependencies": {
+    "@babel/core": "7.18.9",
+    "@babel/plugin-proposal-class-properties": "7.18.6",
+    "@babel/plugin-proposal-dynamic-import": "7.18.6",
+    "@babel/plugin-transform-modules-commonjs": "7.18.6",
+    "@babel/plugin-transform-modules-systemjs": "7.18.9",
+    "@babel/plugin-transform-regenerator": "7.18.6",
+    "@babel/plugin-transform-template-literals": "7.18.9",
+    "@babel/preset-env": "7.18.9",
+    "@babel/preset-typescript": "7.18.6",
+    "@types/chrome": "0.0.193",
+    "@types/mocha": "9.1.1",
+    "@types/node": "17.0.8",
+    "@types/punycode": "2.1.0",
+    "@typescript-eslint/eslint-plugin": "5.31.0",
+    "@typescript-eslint/parser": "5.31.0",
+    "@xmldom/xmldom": "0.8.5",
+    "auto": "10.37.4",
+    "babel-eslint": "10.1.0",
+    "body-parser": "1.20.0",
+    "broccoli": "3.5.2",
+    "broccoli-babel-transpiler": "7.8.1",
+    "broccoli-concat": "4.2.5",
+    "broccoli-file-creator": "2.1.1",
+    "broccoli-funnel": "3.0.8",
+    "broccoli-imagemin": "2.0.1",
+    "broccoli-lint-eslint": "6.0.0",
+    "broccoli-merge-trees": "4.2.0",
+    "broccoli-plugin": "4.0.7",
+    "broccoli-source": "3.0.1",
+    "camelcase": "6.3.0",
+    "chai": "4.3.6",
+    "chai-as-promised": "7.1.1",
+    "chai-dom": "1.11.0",
+    "colors": "1.4.0",
+    "commander": "9.4.0",
+    "concurrently": "7.3.0",
+    "console-ui": "3.1.2",
+    "cookie-parser": "1.4.6",
+    "eslint": "7.32.0",
+    "eslint_d": "12.2.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-compat": "4.0.2",
+    "express": "4.18.1",
+    "fake-indexeddb": "4.0.0",
+    "filehound": "1.17.6",
+    "full-icu": "1.4.0",
+    "git-describe": "4.1.1",
+    "git-rev": "0.2.1",
+    "glob": "8.0.3",
+    "jsdom": "20.0.0",
+    "mocha": "10.0.0",
+    "mockdate": "3.0.5",
+    "node-notifier": "10.0.1",
+    "path-browserify": "1.0.1",
+    "ramda": "0.28.0",
+    "sinon": "14.0.0",
+    "sinon-chai": "3.7.0",
+    "strip-json-comments": "3.1.1",
+    "systemjs": "0.19.47",
+    "systemjs-plugin-json": "0.3.0",
+    "testem": "3.8.0",
+    "tree-sync": "2.1.0",
+    "typescript": "4.7.4",
+    "untildify": "4.0.0",
+    "watch-detector": "1.0.1",
+    "web-ext": "7.5.0",
+    "webpack": "5.74.0",
+    "ws": "8.8.1"
+  },
+  "dependencies": {
+    "@cliqz/url-parser": "1.1.4",
+    "abortcontroller-polyfill": "1.7.3",
+    "anonymous-credentials": "https://github.com/human-web/anonymous-credentials/releases/download/1.0.0/anonymous-credentials-1.0.0.tgz",
+    "dexie": "3.2.2",
+    "linkedom": "0.14.12",
+    "pako": "2.0.4",
+    "punycode": "2.1.1",
+    "star-wasm": "https://github.com/broowzer/web-discovery-project/releases/download/star-wasm-0.1.3.tgz/star-wasm-0.1.3.tgz",
+    "tldts-experimental": "5.7.84",
+    "webextension-polyfill": "0.9.0"
+  },
+  "overrides": {
+    "ansi-html": "0.0.9",
+    "node-forge": "1.3.1",
+    "got": "12.4.1",
+    "glob-parent": "6.0.2",
+    "file-type": "17.1.4",
+    "fast-json-patch": "3.1.1",
+    "jsonwebtoken": "9.0.0",
+    "cacheable-request": "10.2.7"
+  },
+  "auto": {
+    "name": "Broowzer",
+    "email": "devlopers@broowzer.com",
+    "plugins": [
+      "git-tag"
+    ],
+    "labels": [
+      {
+        "name": "PR: Breaking Change :boom:",
+        "description": "Increment major version when merged",
+        "changelogTitle": ":boom: Breaking Change",
+        "releaseType": "major",
+        "overwrite": true,
+        "color": "#e2372b"
+      },
+      {
+        "name": "PR: New Feature :rocket:",
+        "description": "Increment minor version when merged",
+        "changelogTitle": ":rocket: New Feature",
+        "releaseType": "minor",
+        "overwrite": true,
+        "color": "#2e449b"
+      },
+      {
+        "name": "PR: Performance :running_woman:",
+        "description": "Increment minor version when merged",
+        "changelogTitle": ":running_woman: Performance",
+        "releaseType": "minor",
+        "overwrite": true,
+        "color": "#ead99f"
+      },
+      {
+        "name": "PR: Bug Fix :bug:",
+        "description": "Increment patch version when merged",
+        "changelogTitle": ":bug: Bug Fix",
+        "releaseType": "patch",
+        "overwrite": true,
+        "color": "#56dd97"
+      },
+      {
+        "name": "PR: Polish :nail_care:",
+        "description": "Increment patch version when merged",
+        "changelogTitle": ":nail_care: Polish",
+        "releaseType": "patch",
+        "overwrite": true,
+        "color": "#a9bbe8"
+      },
+      {
+        "name": "PR: Internal :house:",
+        "description": "Changes only affect internals",
+        "changelogTitle": ":house: Internal",
+        "releaseType": "none",
+        "overwrite": true,
+        "color": "#5b1482"
+      },
+      {
+        "name": "PR: Docs :memo:",
+        "description": "Changes only affect documentation",
+        "changelogTitle": ":memo: Documentation",
+        "releaseType": "none",
+        "overwrite": true,
+        "color": "#d2f28a"
+      },
+      {
+        "name": "skip-release",
+        "description": "Preserve the current version when merged",
+        "releaseType": "skip",
+        "overwrite": true,
+        "color": "#e069cf"
+      },
+      {
+        "name": "PR: Dependencies :nut_and_bolt:",
+        "description": "Changes only update dependencies",
+        "changelogTitle": ":nut_and_bolt: Dependencies",
+        "releaseType": "none",
+        "overwrite": true,
+        "color": "#5dbdcc"
+      }
+    ]
+  }
+}

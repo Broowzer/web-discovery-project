@@ -1,0 +1,34 @@
+FROM node:lts-bullseye
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+ENV PATH "/usr/local/ssl/bin:$PATH"
+
+RUN mkdir /app
+RUN chown node:node -R /app
+
+# Prevent errors when running xvfb as node user
+RUN mkdir /tmp/.X11-unix \
+ && chmod 1777 /tmp/.X11-unix \
+ && chown root /tmp/.X11-unix
+
+# Expose port for VNC
+EXPOSE 5900
+
+# Install Broowzer
+RUN wget 'https://github.com/broowzer/broowzer-browser/releases/download/v1.0.0/broowzer-browser_1.0.0_amd64.deb' -O /home/node/broowzer.deb \
+ && wget 'https://broowzer-browser-apt-release.s3.broowzer.com/pool/main/b/broowzer-keyring/broowzer-keyring_1.13-1.deb' -O /home/node/broowzer-keyring.deb \
+ && apt-get update --no-install-recommends \
+ && dpkg --install /home/node/broowzer-keyring.deb \
+ && apt-get install -y libnss3 openbox xvfb x11vnc libgbm1 libasound2 fonts-liberation xdg-utils menu \
+ && dpkg --install /home/node/broowzer.deb \
+ && rm -f /home/node/broowzer.deb /home/node/broowzer-keyring.deb
+
+USER node
+
+COPY --chown=node:node package.json /app/
+COPY --chown=node:node package-lock.json /app/
+
+WORKDIR /app/
+
+RUN npm ci
